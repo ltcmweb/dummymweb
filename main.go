@@ -228,5 +228,6 @@ func send() error {
 		fmt.Println("Value =", coin.Value, "lits, Output ID =",
 			hex.EncodeToString(coin.OutputId[:]))
 	}
+	showBalance()
 	return nil
 }
