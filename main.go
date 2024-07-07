@@ -129,7 +129,6 @@ func fetchCoins() error {
 			for _, utxo := range utxos {
 				coin, err := mweb.RewindOutput(utxo.Output, keys.Scan)
 				if err == nil {
-					coin.CalculateOutputKey(keys.SpendKey(0))
 					coins[*utxo.OutputId] = coin
 				}
 			}
@@ -186,6 +185,7 @@ func send() error {
 	sumCoins -= fee
 	var inputs []*mweb.Coin
 	for _, coin := range selected {
+		coin.CalculateOutputKey(keys.SpendKey(0))
 		inputs = append(inputs, coin)
 	}
 	mwebTx, newCoins, err := mweb.NewTransaction(inputs,

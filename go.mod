@@ -3,8 +3,9 @@ module github.com/ltcmweb/dummymweb
 go 1.21
 
 require (
-	github.com/ltcmweb/ltcd v0.24.4-0.20240612083038-834903fbbef4
-	github.com/ltcmweb/ltcd/ltcutil v1.2.4-0.20240612083038-834903fbbef4
+	github.com/ltcmweb/ltcd v0.24.4-0.20240707150158-0d7f2ea02391
+	github.com/ltcmweb/ltcd/chaincfg/chainhash v1.0.3
+	github.com/ltcmweb/ltcd/ltcutil v1.2.4-0.20240707150158-0d7f2ea02391
 	github.com/ltcmweb/neutrino v0.17.1
 	github.com/ltcsuite/ltcwallet/walletdb v1.3.5
 )
@@ -21,7 +22,6 @@ require (
 	github.com/kkdai/bstream v1.0.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/ltcmweb/ltcd/btcec/v2 v2.3.3 // indirect
-	github.com/ltcmweb/ltcd/chaincfg/chainhash v1.0.3 // indirect
 	github.com/ltcmweb/neutrino/cache v1.1.0 // indirect
 	github.com/ltcmweb/secp256k1 v0.1.0 // indirect
 	github.com/ltcsuite/lnd/queue v1.1.0 // indirect
