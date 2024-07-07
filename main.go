@@ -53,11 +53,6 @@ func main() {
 	if err = fetchCoins(); err != nil {
 		return
 	}
-	var sumCoins uint64
-	for _, coin := range coins {
-		sumCoins += coin.Value
-	}
-	fmt.Println("Total =", sumCoins, "lits")
 	cs.RegisterMwebUtxosCallback(utxoHandler)
 	if err = cs.Start(); err != nil {
 		return
@@ -135,7 +130,16 @@ func fetchCoins() error {
 			leaves = leaves[:0]
 		}
 	}
-	return err
+	showBalance()
+	return nil
+}
+
+func showBalance() {
+	var sumCoins uint64
+	for _, coin := range coins {
+		sumCoins += coin.Value
+	}
+	fmt.Println("Balance =", sumCoins, "lits")
 }
 
 var (
@@ -157,6 +161,13 @@ func utxoHandler(lfs *mweb.Leafset, utxos []*wire.MwebNetUtxo) {
 				} else {
 					sent = true
 				}
+			}
+		}
+		if coins[*utxo.OutputId] == nil {
+			coin, err := mweb.RewindOutput(utxo.Output, keys.Scan)
+			if err == nil {
+				coins[*utxo.OutputId] = coin
+				showBalance()
 			}
 		}
 	}
